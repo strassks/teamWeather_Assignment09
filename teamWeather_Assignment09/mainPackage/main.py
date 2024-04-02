@@ -4,6 +4,7 @@ if __name__ == "__main__":
     response = requests.get('https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=pfJKDXPzTykVL73ehnPyY8pkDQLjfq5cz5LqCkl3')
     json_string = response.content
     parsed_json = json.loads(json_string) # Now we have a python dictionary
+  
     res = requests.get()
     data = res.json()
     
