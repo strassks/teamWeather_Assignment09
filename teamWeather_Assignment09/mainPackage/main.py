@@ -1,8 +1,16 @@
-# Name: Kaileb Strasser, Max Schiller
+# Name: Kaileb strasser, Max Schiller, Josh Halbakken
+# email: strassks@mail.uc.edu, schillmx@mail.uc.edu, halbakjc@mail.uc.edu
+# Assignment Number: Assignment 09
+# Due Date: 4/4/2024 
+# Course/Section: IS-4010
+# Semester/Year: Spring 2024
+# Brief Description of the assignment: this assignment calls and extracts data from the 
+#openweather API and prints it to the console
 
-
-
-
+# Brief Description of what this module does: this module calls the API key 
+# Citations: https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/
+#https://www.instructables.com/Get-Weather-Data-Using-Python-and-Openweather-API/
+# Anything else that's relevant: N/A
 
 
 
@@ -15,9 +23,14 @@ if __name__ == "__main__":
     
     response = requests.get(url.format(city))
     data = response.json()
-
-    if data["cod"] == "404":
+    '''
+    Pulls weather data from the city that is input
+    @param url: The url and API key that is being called
+    @return: weather data from openweather.org for the requested city
+    '''
+    if data["cod"] == "404": #error handling 
         print("City not found.")
+        
     else:
         humidity = data["main"]["humidity"]
         pressure = data["main"]["pressure"]
@@ -29,3 +42,5 @@ if __name__ == "__main__":
         print('Wind:', wind, 'm/s')
         print('Pressure:', pressure, 'hPa')
         print('Humidity:', humidity, '%')
+        
+        
