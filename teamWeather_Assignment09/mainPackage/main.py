@@ -1,4 +1,5 @@
-# Name: Kaileb strasser, Max Schiller, Josh Halbakken
+#main.py 
+#Name: Kaileb strasser, Max Schiller, Josh Halbakken
 # email: strassks@mail.uc.edu, schillmx@mail.uc.edu, halbakjc@mail.uc.edu
 # Assignment Number: Assignment 09
 # Due Date: 4/4/2024 
@@ -14,33 +15,10 @@
 
 
 
-import requests
-import json
+from weather_api import WeatherAPI
 
 if __name__ == "__main__":
-    url = "http://api.openweathermap.org/data/2.5/weather?q={}&appid=58afbc2c63b8b7faf2d12f16b48ae8a4"
+    api_key = "58afbc2c63b8b7faf2d12f16b48ae8a4"  # Normally, you should avoid hardcoding the API key
+    weather_api = WeatherAPI(api_key)
     city = input("What city would you like to know about? Enter here: ")
-    
-    response = requests.get(url.format(city))
-    data = response.json()
-    '''
-    Pulls weather data from the city that is input
-    @param url: The url and API key that is being called
-    @return: weather data from openweather.org for the requested city
-    '''
-    if data["cod"] == "404": #error handling 
-        print("City not found.")
-        
-    else:
-        humidity = data["main"]["humidity"]
-        pressure = data["main"]["pressure"]
-        wind = data["wind"]["speed"]
-        temp = data["main"]["temp"] - 273.15  # Convert temperature from Kelvin to Celsius
-
-        print("Here is the weather for", city)
-        print('Temperature:', round(temp, 2), '°C')
-        print('Wind:', wind, 'm/s')
-        print('Pressure:', pressure, 'hPa')
-        print('Humidity:', humidity, '%')
-        
-        
+    weather_api.print_weather_data(city)
